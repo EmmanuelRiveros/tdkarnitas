@@ -19,42 +19,42 @@ public class Cliente {
     private String celular;
     
     /**
-     * @return the nombre
+     * @return nombre del cliente
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * @param nombre the nombre to set
+     * @param nombre nombre del cliente a declarar
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * @return the domicilio
+     * @return domicilio del cliente
      */
     public String getDomicilio() {
         return domicilio;
     }
 
     /**
-     * @param domicilio the domicilio to set
+     * @param domicilio domicilio del cliente a declarar
      */
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
 
     /**
-     * @return the celular
+     * @return celular del cliente
      */
     public String getCelular() {
         return celular;
     }
 
     /**
-     * @param celular the celular to set
+     * @param celular celular del cliente a declarar
      */
     public void setCelular(String celular) {
         this.celular = celular;

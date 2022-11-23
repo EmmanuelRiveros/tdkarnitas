@@ -19,42 +19,42 @@ public class Repartidor {
     private String celular;
     
     /**
-     * @return the nombre
+     * @return nombre del repartidor
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * @param nombre the nombre to set
+     * @param nombre nombre del repartidor a declarar
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * @return the ID
+     * @return ID para identificar al repartidor
      */
     public String getID() {
         return ID;
     }
 
     /**
-     * @param ID the ID to set
+     * @param ID ID para identificar al repartidor a declarar
      */
     public void setID(String ID) {
         this.ID = ID;
     }
 
     /**
-     * @return the celular
+     * @return celular del repartidor
      */
     public String getCelular() {
         return celular;
     }
 
     /**
-     * @param celular the celular to set
+     * @param celular celular del repartidor a declarar
      */
     public void setCelular(String celular) {
         this.celular = celular;

@@ -28,84 +28,84 @@ public class Pedido {
     private TipoPago tipo;
     
     /**
-     * @return the fecha
+     * @return fecha donde se realizo el pedido
      */
     public String getFecha() {
         return fecha;
     }
 
     /**
-     * @param fecha the fecha to set
+     * @param fecha fecha donde se realizo el pedido a declarar
      */
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
     /**
-     * @return the numero
+     * @return numero del pedido para identificar
      */
     public int getNumero() {
         return numero;
     }
 
     /**
-     * @param numero the numero to set
+     * @param numero numero del pedido para identificar a declarar
      */
     public void setNumero(int numero) {
         this.numero = numero;
     }
 
     /**
-     * @return the cliente
+     * @return cliente que realizo el pedido
      */
     public Cliente getCliente() {
         return cliente;
     }
 
     /**
-     * @param cliente the cliente to set
+     * @param cliente cliente que realizo el pedido a declarar
      */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
     /**
-     * @return the repartidor
+     * @return repartidor que entrego el pedido
      */
     public Repartidor getRepartidor() {
         return repartidor;
     }
 
     /**
-     * @param repartidor the repartidor to set
+     * @param repartidor repartidor que entrego el pedido a declarar
      */
     public void setRepartidor(Repartidor repartidor) {
         this.repartidor = repartidor;
     }
 
     /**
-     * @return the ordenes
+     * @return ordenes que se realizaron en el pedido
      */
     public List<Orden> getOrdenes() {
         return ordenes;
     }
 
     /**
-     * @param ordenes the ordenes to set
+     * @param ordenes ordenes que se realizaron en el pedido a declarar
      */
     public void setOrdenes(List<Orden> ordenes) {
         this.ordenes = ordenes;
     }
     
     /**
-     * @return the tipo
+     * @return tipo de pago que se manejo en el pedido
      */
     public TipoPago getTipo() {
         return tipo;
     }
 
     /**
-     * @param tipo the tipo to set
+     * @param tipo tipo de pago que se manejo en el pedido a declarar
      */
     public void setTipo(TipoPago tipo) {
         this.tipo = tipo;

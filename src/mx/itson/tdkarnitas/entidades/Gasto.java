@@ -19,42 +19,42 @@ public class Gasto {
     private float costo;
 
     /**
-     * @return the fecha
+     * @return fecha donde se realizo el gasto
      */
     public String getFecha() {
         return fecha;
     }
 
     /**
-     * @param fecha the fecha to set
+     * @param fecha fecha donde se realizo el gasto a declarar
      */
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
     /**
-     * @return the descripcion
+     * @return descripcion del gasto
      */
     public String getDescripcion() {
         return descripcion;
     }
 
     /**
-     * @param descripcion the descripcion to set
+     * @param descripcion descripcion del gasto a declarar
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
     /**
-     * @return the costo
+     * @return gasto total
      */
     public float getCosto() {
         return costo;
     }
 
     /**
-     * @param costo the costo to set
+     * @param costo gasto total a declarar
      */
     public void setCosto(float costo) {
         this.costo = costo;

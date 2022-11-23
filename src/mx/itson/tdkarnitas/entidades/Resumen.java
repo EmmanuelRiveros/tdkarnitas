@@ -29,28 +29,28 @@ public class Resumen {
     }
     
     /**
-     * @return the pedidos
+     * @return lista de pedidos
      */
     public List<Pedido> getPedidos() {
         return pedidos;
     }
 
     /**
-     * @param pedidos the pedidos to set
+     * @param pedidos lista de pedidos a declarar
      */
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
 
     /**
-     * @return the gastos
+     * @return lista de gastos
      */
     public List<Gasto> getGastos() {
         return gastos;
     }
 
     /**
-     * @param gastos the gastos to set
+     * @param gastos lista de gastos a declarar
      */
     public void setGastos(List<Gasto> gastos) {
         this.gastos = gastos;

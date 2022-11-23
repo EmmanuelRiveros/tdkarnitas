@@ -19,42 +19,42 @@ public class Orden {
     private float costo;
 
     /**
-     * @return the descripcion
+     * @return descripción de la orden
      */
     public String getDescripcion() {
         return descripcion;
     }
 
     /**
-     * @param descripcion the descripcion to set
+     * @param descripcion decripción de la orden a declarar
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
     /**
-     * @return the cantidad
+     * @return cantidad de la orden
      */
     public int getCantidad() {
         return cantidad;
     }
 
     /**
-     * @param cantidad the cantidad to set
+     * @param cantidad cantidad de la orden a declarar
      */
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
     /**
-     * @return the costo
+     * @return costo de la orden
      */
     public float getCosto() {
         return costo;
     }
 
     /**
-     * @param costo the costo to set
+     * @param costo costo de la orden a declarar
      */
     public void setCosto(float costo) {
         this.costo = costo;
