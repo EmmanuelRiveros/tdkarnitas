@@ -18,14 +18,21 @@ public class Resumen {
     // Lista de gastos que se realizaron
     private List<Gasto> gastos;
 
+    // Deserializa el JSON que recibe utilizando la clase Gson
     public Resumen deserializar(String json){
-        Resumen edoCuenta = new Resumen();
+        Resumen resumen = new Resumen();
         try {
-            edoCuenta = new Gson().fromJson(json, Resumen.class);
+            resumen = new Gson().fromJson(json, Resumen.class);
         } catch(Exception ex){
             System.err.print("Ocurrió un error: " + ex.getMessage());
         }
-        return edoCuenta;
+        return resumen;
+    }
+    
+    // Metodo para realizar una copia del resumen
+    public void copiar(Resumen resumen){
+        this.setPedidos(resumen.getPedidos());
+        this.setGastos(resumen.getGastos());
     }
     
     /**

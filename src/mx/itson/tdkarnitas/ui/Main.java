@@ -25,6 +25,8 @@ import mx.itson.tdkarnitas.negocio.Operacion;
 public class Main extends javax.swing.JFrame {
 
     Resumen resumen;
+    Resumen resumenCopia;
+    
     /**
      * Creates new form Main
      */
@@ -85,6 +87,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         cmbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cmbMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbMesActionPerformed(evt);
+            }
+        });
 
         lblGananciasMes.setText("Ingresos totales del mes:");
 
@@ -238,10 +245,6 @@ public class Main extends javax.swing.JFrame {
             // Importa y deserializa el json para interpretarlo posteriormente
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-            // Borra los datos de la tabla orden en caso de que existan
-            DefaultTableModel modelo2 = (DefaultTableModel) tblOrden.getModel();
-            modelo2.setRowCount(0);
-                       
             if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 File archivo = fileChooser.getSelectedFile();
                 
@@ -250,7 +253,13 @@ public class Main extends javax.swing.JFrame {
                 String contenido = new String(archivoBytes, StandardCharsets.UTF_8);
                 
                 resumen = new Resumen().deserializar(contenido);
+                resumenCopia = new Resumen().deserializar(contenido);
                 
+                // Borra los datos de la tabla orden
+                DefaultTableModel modelo2 = (DefaultTableModel) tblOrden.getModel();
+                modelo2.setRowCount(0);
+                lblTotalOrden.setText("TOTAL: 0.0");
+                       
                 Operacion.ordenarFechas(resumen);
                 Operacion.calcularMes(resumen, cmbMes.getSelectedItem().toString());
                 
@@ -278,7 +287,7 @@ public class Main extends javax.swing.JFrame {
             }
         } catch (Exception ex){
             
-            infoBox("Vuelve a ingresar los datos", "Error en el estado de cuenta");
+            infoBox("Vuelve a ingresar los datos", "Error en la operación");
             System.out.println(ex);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -301,6 +310,48 @@ public class Main extends javax.swing.JFrame {
         // Ingresa el valor resultante en el total
         lblTotalOrden.setText("TOTAL: " + total);
     }//GEN-LAST:event_tblPedidosMouseClicked
+
+    private void cmbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMesActionPerformed
+        // TODO add your handling code here:
+        try{
+            if (resumen != null){
+                resumen.copiar(resumenCopia);
+                // Borra los datos de la tabla orden
+                DefaultTableModel modelo2 = (DefaultTableModel) tblOrden.getModel();
+                modelo2.setRowCount(0);
+                lblTotalOrden.setText("TOTAL: 0.0");
+                            
+                Operacion.ordenarFechas(resumen);
+                Operacion.calcularMes(resumen, cmbMes.getSelectedItem().toString());
+                
+                // Ingresa los valores en sus respectivos labels
+                lblGanancias.setText("Ganancias: " + Operacion.sumarPedidos(resumen.getPedidos()));
+                lblGastos.setText("Gastos: " + Operacion.sumarGastos(resumen.getGastos()));
+                lblGananciasMes.setText("Ingresos totales del mes: " + (Operacion.sumarPedidos(resumen.getPedidos()) - Operacion.sumarGastos(resumen.getGastos())));
+                lblTotalGastos.setText("TOTAL: " + Operacion.sumarGastos(resumen.getGastos()));
+
+                // Crea modelos de tablas implementadas en la ui
+                DefaultTableModel modelo1 = (DefaultTableModel) tblPedidos.getModel();
+                modelo1.setRowCount(0);
+                
+                DefaultTableModel modelo3 = (DefaultTableModel) tblGastos.getModel();
+                modelo3.setRowCount(0);
+                
+                // Agrega a cada tabla los valores que se encuentran dentro de la clase deserializada resumen
+                for (Pedido i : resumen.getPedidos()){
+                    modelo1.addRow(new Object[] { i.getFecha(), i.getNumero(), i.getCliente().getNombre(), i.getRepartidor().getNombre(), i.getTipo().toString()});
+                }
+                
+                for (Gasto i : resumen.getGastos()){
+                    modelo3.addRow(new Object[] { i.getFecha(), i.getDescripcion(), i.getCosto() });
+                }
+            }        
+        } catch (Exception ex){
+            infoBox("Vuelve a ingresar los datos", "Error en la operación");
+            System.out.println(ex);
+        }
+               
+    }//GEN-LAST:event_cmbMesActionPerformed
 
     // Imprime en pantalla un mensaje de error
     private static void infoBox(String infoMsj, String titulo) {
