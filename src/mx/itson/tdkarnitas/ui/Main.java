@@ -11,7 +11,6 @@ import java.nio.file.Files;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import mx.itson.tdkarnitas.entidades.Gasto;
 import mx.itson.tdkarnitas.entidades.Orden;
 import mx.itson.tdkarnitas.entidades.Pedido;
@@ -19,13 +18,13 @@ import mx.itson.tdkarnitas.entidades.Resumen;
 import mx.itson.tdkarnitas.negocio.Operacion;
 
 /**
- *
+ * Clase principal del programa
  * @author Emmanuel Riveros
  */
 public class Main extends javax.swing.JFrame {
 
     Resumen resumen;
-    Resumen resumenCopia;
+    String contenido;
     
     /**
      * Creates new form Main
@@ -250,10 +249,9 @@ public class Main extends javax.swing.JFrame {
                 
                 byte archivoBytes[] = Files.readAllBytes(archivo.toPath());
                 
-                String contenido = new String(archivoBytes, StandardCharsets.UTF_8);
+                contenido = new String(archivoBytes, StandardCharsets.UTF_8);
                 
                 resumen = new Resumen().deserializar(contenido);
-                resumenCopia = new Resumen().deserializar(contenido);
                 
                 // Borra los datos de la tabla orden
                 DefaultTableModel modelo2 = (DefaultTableModel) tblOrden.getModel();
@@ -314,8 +312,9 @@ public class Main extends javax.swing.JFrame {
     private void cmbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMesActionPerformed
         // TODO add your handling code here:
         try{
+            // Si resumen no es nulo ejecutar codigo
             if (resumen != null){
-                resumen.copiar(resumenCopia);
+                resumen = resumen.deserializar(contenido);
                 // Borra los datos de la tabla orden
                 DefaultTableModel modelo2 = (DefaultTableModel) tblOrden.getModel();
                 modelo2.setRowCount(0);
